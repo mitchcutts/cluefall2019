@@ -1,0 +1,65 @@
+6 Game Pieces -> 1 Player 5 Computer
+Read in People, Weapons, Rooms, Board Layout from Config Files
+Rooms, People and Weapons don't need to match Clue.
+Three Card Types:
+	Room, People, Weapon
+Two Player Types, 6 game pieces: 
+	1 Player, 5 Computer
+
+Requirements: Board Layout Must Have 9 Rooms, and there should be a "closet" in middle of board for players to move around
+A few rooms should not be simple rectangles.
+Cool Idea: Secret Passage Rooms (Mini Games would be cool too)
+
+
+Deck includes 6 people 6 weapons, 9 rooms
+
+Goal: Discover who, where and with which weapon did the murder happen. (Shuffling between games)
+
+Setup: Give each player a starting postion. Each card is shuffled, one of each is chosen to be solution.
+Afterward, remaining cards are shuffled TOGETHER and given to each player. 
+
+Gameplay: Players take turns, human goes first.
+		Every turn: 
+			-Player can make accusation
+			-Player can roll dice and move
+			-If the player is in a room, player makes a suggestion
+		Movement: possibilities: Up, down, right, left, but not diagonal.
+		Program should highlight all location possibilities (target locations) for player movement		
+		Target locations are defined as set of possible	squares that are on a path with exactly the rolled amount of steps
+			-UNLESS player enters a room through a door or uses a secret passage (player surrenders rest of steps)
+			-If player is in a room, they must exit room by any door or secret passage.
+				-No reentry on same turn and player cannot choose to stay in room.
+			-No movement back to same cell in a move.
+			-A player may not stop on or move through a non-room location occupied by another player
+			-Rooms can be occupied by same players.
+			-If there aren't any possible moves, the player does not move and doesn't make a suggestion(skip)
+			-When a suggestion is made, suggested player will be automatically moved to a room.
+
+	Functions:
+		Suggestion():
+			A suggestion is defined as a guess of room, person, and weapon. Idea here is to eliminate possibilities.
+			Other players have to disprove a suggestion by showing a card in their hand that refutes suggestion.
+			Can only be made when player enters a room
+				-Suggested room must match room player is in
+			Person being suggested as murderer is now moved to that room (location update)
+			
+		IsDisproved()??? :
+			Occurs one player at a time starting with next sequential player(ie. loop)
+			Draft: All players are handled by AI, and cards are automatically shown to suggester. If noone has a card, continue;
+			Final Cut: If the player is human, a window should allow player to choose which card to show.
+			If player is AI, AI tracks what cards have been shown to each player and tries to show same card if possible.
+			All players see if a person passes or disproves a suggestion, but only the player making the suggestion gets to see the card.
+			Once a suggestion is disproven, break loop.
+
+	To think about: What is implied if all players pass (aka no disprovals are offered)? Does it mean the suggestion is the solution?
+		
+
+		Accusation():
+			This is a suggestion on drugs (aka extends suggestion?)
+			An accusation is made when the player is ready to make a final guess
+			An accusation consists of a room, weapon and person
+			Unlike Suggestion, player does not need to be in a room
+
+		Winning: A player wins if their latest Accusation is correct. 
+			-If accusation is Incorrect, player loses and piece is removed from the board!
+
