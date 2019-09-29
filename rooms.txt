@@ -1,0 +1,13 @@
+K, Kitchen, Room
+A, Airlock Port, Room
+E, Exercise Room, Room
+D, Alien Defense Headquarters, Room
+P, Astronaut Cuddle Puddle, Room
+R, Research Labatory, Room
+Q, Equipment Room, Room
+S, Spacewalk Preparation Chamber, Room
+B, Oxygen-Regulated Back Porch, Room
+X, Closet, Other
+W, Walkway, Other
+
+
